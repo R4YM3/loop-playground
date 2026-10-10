@@ -1,0 +1,24 @@
+name: Controlled failure fixture
+
+on:
+  workflow_dispatch:
+    inputs:
+      scenario:
+        description: Failure scenario to exercise recovery UX
+        type: choice
+        required: true
+        options: [intentional-check-failure, successful-retry]
+
+permissions:
+  contents: read
+
+jobs:
+  exercise-recovery:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Running controlled scenario: ${{ inputs.scenario }}"
+      - if: inputs.scenario == 'intentional-check-failure'
+        run: |
+          echo "Intentional fixture failure: use this run to test Loop recovery UX."
+          exit 1
+      - run: echo "Successful retry fixture completed."

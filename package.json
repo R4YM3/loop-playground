@@ -1,0 +1,15 @@
+{
+  "name": "loop-playground",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Safe fixture app for exercising Loop's GitHub workflow.",
+  "scripts": {
+    "lint": "node scripts/lint.mjs",
+    "typecheck": "node scripts/typecheck.mjs",
+    "test": "node --test test/app.test.mjs",
+    "build": "node scripts/build.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
