@@ -1,6 +1,6 @@
 name: Controlled failure fixture
 
-on:
+"on":
   workflow_dispatch:
     inputs:
       scenario:
