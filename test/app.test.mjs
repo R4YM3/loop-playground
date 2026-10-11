@@ -1,9 +1,18 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import { applyWelcomeMessage, welcomeMessage } from "../src/app.mjs";
 
 test("creates a welcoming message", () => {
   assert.equal(welcomeMessage("Loop"), "Welcome, Loop!");
+});
+
+test("shows a concise welcome in the fixture", async () => {
+  const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
+  const welcome = welcomeMessage("Loop");
+
+  assert.equal(welcome, "Welcome, Loop!");
+  assert.match(html, new RegExp(`id="greeting"[^>]*>${welcome}<`));
 });
 
 test("does not write a duplicate welcome update", () => {
